@@ -32,6 +32,7 @@ public class Application {
 	public Order processOrder(Order order) {
 		logger.info("Processing order: " + order);
 		order.setProduct(productService.processOrder(order));
+		logger.info("Output order: " + order);
 		return order;
 	}
 

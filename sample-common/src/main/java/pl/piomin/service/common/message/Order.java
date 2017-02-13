@@ -74,7 +74,7 @@ public class Order {
 	
 	@Override
 	public String toString() {
-		return String.format("Order[id=%d]", id);
+		return String.format("Order[id=%d,product=%d,shipment=%d]", id, product.getId(), shipment.getId());
 	}
 
 }

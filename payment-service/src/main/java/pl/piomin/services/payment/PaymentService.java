@@ -21,6 +21,7 @@ public class PaymentService {
 				order.setProduct(o.getProduct());
 			else if (o.getShipment().getId() != null)
 				order.setShipment(o.getShipment());
+			return order;
 		} else orders.add(order);
 		return null;
 	}
