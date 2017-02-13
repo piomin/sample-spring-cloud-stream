@@ -19,6 +19,7 @@ import pl.piomin.service.common.message.OrderStatus;
 import pl.piomin.service.common.message.OrderType;
 import pl.piomin.service.common.message.Product;
 import pl.piomin.service.common.message.Shipment;
+import pl.piomin.service.common.message.ShipmentType;
 
 
 @SpringBootApplication
@@ -37,7 +38,7 @@ public class Application {
 	@InboundChannelAdapter(value = Source.OUTPUT, poller = @Poller(fixedDelay = "10000", maxMessagesPerPoll = "1"))
 	public MessageSource<Order> orderSource() {
 		return () -> {
-			Order o = new Order(index++, OrderType.PURCHASE, LocalDateTime.now(), OrderStatus.NEW, new Product(), new Shipment());
+			Order o = new Order(index++, OrderType.PURCHASE, LocalDateTime.now(), OrderStatus.NEW, new Product("Example#2"), new Shipment(ShipmentType.SHIP));
 			logger.info("Sending order: " + o);
 			return new GenericMessage<>(o); 
 		};
