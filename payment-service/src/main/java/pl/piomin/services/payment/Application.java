@@ -1,4 +1,4 @@
-package pl.piomin.services.shipment;
+package pl.piomin.services.payment;
 
 import java.util.logging.Logger;
 
@@ -8,31 +8,30 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
-import org.springframework.messaging.handler.annotation.SendTo;
 
 import pl.piomin.service.common.message.Order;
 
 @SpringBootApplication
-@EnableBinding(Processor.class)
+@EnableBinding(Sink.class)
 public class Application {
 
 	@Autowired
-	private ShipmentService shipmentService;
-	
+	private PaymentService paymentService;
+
 	protected Logger logger = Logger.getLogger(Application.class.getName());
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@StreamListener(Processor.INPUT)
-	@SendTo(Processor.OUTPUT)
-	public Order processOrder(Order order) {
+	@StreamListener(Sink.INPUT)
+	public void processOrder(Order order) {
 		logger.info("Processing order: " + order);
-		order.setShipment(shipmentService.processOrder(order));
-		return order;
+		Order o = paymentService.processOrder(order);
+		if (o != null)
+			logger.info("Final response: " + (o.getProduct().getPrice() + o.getShipment().getPrice()));
 	}
 
 	@Bean

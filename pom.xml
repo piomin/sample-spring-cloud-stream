@@ -33,5 +33,6 @@
 		<module>product-service</module>
 		<module>sample-common</module>
 		<module>shipment-service</module>
+		<module>payment-service</module>
 	</modules>
 </project>

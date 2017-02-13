@@ -7,14 +7,28 @@ public class Shipment {
 	private Integer id;
 	private ShipmentType type;
 	private LocalDate date;
+	private int price;
 
 	public Shipment() {
 
 	}
 
-	public Shipment(ShipmentType type, LocalDate date) {
+	public Shipment(ShipmentType type) {
+		super();
+		this.type = type;
+	}
+
+	public Shipment(ShipmentType type, LocalDate date, int price) {
 		this.type = type;
 		this.date = date;
+		this.price = price;
+	}
+
+	public Shipment(Integer id, ShipmentType type, LocalDate date, int price) {
+		this.id = id;
+		this.type = type;
+		this.date = date;
+		this.price = price;
 	}
 
 	public Integer getId() {
@@ -39,6 +53,14 @@ public class Shipment {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

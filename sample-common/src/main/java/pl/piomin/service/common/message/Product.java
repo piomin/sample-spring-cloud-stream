@@ -7,10 +7,21 @@ public class Product {
 	private int price;
 
 	public Product() {
-		
+
 	}
 
 	public Product(String name, int price) {
+		this.name = name;
+		this.price = price;
+	}
+
+	public Product(String name) {
+		super();
+		this.name = name;
+	}
+
+	public Product(Integer id, String name, int price) {
+		this.id = id;
 		this.name = name;
 		this.price = price;
 	}
