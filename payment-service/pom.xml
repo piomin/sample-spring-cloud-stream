@@ -8,6 +8,10 @@
 	</parent>
 	<artifactId>payment-service</artifactId>
 
+	<properties>
+		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+	</properties>
+
 	<build>
 		<plugins>
 			<plugin>

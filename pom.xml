@@ -14,6 +14,9 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<sonar.projectKey>piomin_sample-spring-cloud-stream</sonar.projectKey>
+		<sonar.organization>piomin</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencyManagement>
@@ -35,4 +38,29 @@
 		<module>shipment-service</module>
 		<module>payment-service</module>
 	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.8</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
