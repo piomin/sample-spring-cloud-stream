@@ -15,10 +15,15 @@ spring:
           environment:
             spring:
               rabbitmq:
-                host: 192.168.99.100
+                host: localhost
                 port: 30000
                 username: guest
                 password: guest
                 
 server:  
   port: ${PORT:2225}
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
