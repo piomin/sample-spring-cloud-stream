@@ -22,10 +22,8 @@ public class Application {
 	}
 
 	@Bean
-//	@StreamListener(Processor.INPUT)
-//	@SendTo(Processor.OUTPUT)
-	public Function<Order, Order> processOrder(Order order) {
-		return o -> {
+	public Function<Order, Order> input() {
+		return order -> {
 			logger.info("Processing order: " + order);
 			order.setProduct(productService.processOrder(order));
 			logger.info("Output order: " + order);

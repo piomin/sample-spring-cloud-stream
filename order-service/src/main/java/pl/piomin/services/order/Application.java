@@ -22,18 +22,12 @@ public class Application {
 	}
 
 	@Bean
-//	@InboundChannelAdapter(value = Source.OUTPUT, poller = @Poller(fixedDelay = "10000", maxMessagesPerPoll = "1"))
-	public Supplier<Order> orderSource() {
+	public Supplier<Order> output() {
 		return () -> {
 			Order o = new Order(index++, OrderType.PURCHASE, LocalDateTime.now(), OrderStatus.NEW, new Product("Example#2"), new Shipment(ShipmentType.SHIP));
 			logger.info("Sending order: " + o);
 			return o;
 		};
 	}
-	
-//	@Bean
-//	public AlwaysSampler defaultSampler() {
-//	  return new AlwaysSampler();
-//	}
 	
 }

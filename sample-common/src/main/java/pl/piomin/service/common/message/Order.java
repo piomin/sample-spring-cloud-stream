@@ -71,10 +71,16 @@ public class Order {
 	public void setShipment(Shipment shipment) {
 		this.shipment = shipment;
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("Order[id=%d,product=%d,shipment=%d]", id, product.getId(), shipment.getId());
+		return "Order{" +
+				"id=" + id +
+				", type=" + type +
+				", createdAt=" + createdAt +
+				", status=" + status +
+				", product=" + product +
+				", shipment=" + shipment +
+				'}';
 	}
-
 }

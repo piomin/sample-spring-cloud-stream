@@ -5,20 +5,20 @@ spring:
         input:
           destination: ex.stream.out
           group: shipment
-          binder: rabbit1
+#          binder: rabbit1
         output:
           destination: ex.stream.out2
-          binder: rabbit1
-      binders:
-        rabbit1:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 30000
-                username: guest
-                password: guest
+#          binder: rabbit1
+#      binders:
+#        rabbit1:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: localhost
+#                port: 30000
+#                username: guest
+#                password: guest
                 
 server:  
   port: ${PORT:2224}

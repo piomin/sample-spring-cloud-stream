@@ -10,7 +10,6 @@ import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 @SpringBootApplication
-//@EnableBinding(Sink.class)
 public class Application {
 
 	@Autowired
@@ -23,9 +22,8 @@ public class Application {
 	}
 
 	@Bean
-//	@StreamListener(Sink.INPUT)
-	public Consumer<Order> processOrder(Order order) {
-		return ret -> {
+	public Consumer<Order> input() {
+		return order -> {
 			logger.info("Processing order: " + order);
 			Order o = paymentService.processOrder(order);
 			if (o != null)

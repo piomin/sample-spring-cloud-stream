@@ -63,4 +63,13 @@ public class Shipment {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "Shipment{" +
+				"id=" + id +
+				", type=" + type +
+				", date=" + date +
+				", price=" + price +
+				'}';
+	}
 }

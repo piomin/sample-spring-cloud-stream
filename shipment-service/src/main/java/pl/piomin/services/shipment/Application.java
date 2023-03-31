@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.messaging.handler.annotation.SendTo;
 
 import pl.piomin.service.common.message.Order;
 
@@ -24,20 +23,13 @@ public class Application {
 	}
 
 	@Bean
-//	@StreamListener(Processor.INPUT)
-//	@SendTo(Processor.OUTPUT)
-	public Function<Order, Order> processOrder(Order order) {
-		return o -> {
+	public Function<Order, Order> input() {
+		return order -> {
 			logger.info("Processing order: " + order);
 			order.setShipment(shipmentService.processOrder(order));
 			logger.info("Output order: " + order);
 			return order;
 		};
 	}
-
-//	@Bean
-//	public AlwaysSampler defaultSampler() {
-//		return new AlwaysSampler();
-//	}
 
 }

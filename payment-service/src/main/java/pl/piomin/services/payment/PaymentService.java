@@ -17,13 +17,20 @@ public class PaymentService {
 		Optional<Order> oo = orders.stream().filter(o -> o.getId().intValue() == order.getId().intValue()).findFirst();
 		if (oo.isPresent()) {
 			Order o = oo.get();
-			if (o.getProduct().getId() != null)
+			if (o.getProduct() != null)
 				order.setProduct(o.getProduct());
-			else if (o.getShipment().getId() != null)
+			else if (o.getShipment() != null)
 				order.setShipment(o.getShipment());
 			return order;
 		} else orders.add(order);
 		return null;
+	}
+
+	public Order getOrder(int id) {
+		return orders.stream()
+				.filter(it -> it.getId() == id)
+				.findFirst()
+				.orElseThrow();
 	}
 
 }

@@ -24,7 +24,10 @@ public class ShipmentService {
 	}
 	
 	public Shipment processOrder(Order order) {
-		return shipments.stream().filter(s -> s.getType().equals(order.getShipment().getType())).findAny().get();
+		return shipments.stream()
+				.filter(s -> s.getType().equals(order.getShipment().getType()))
+				.findAny()
+				.orElseThrow();
 	}
 
 }
