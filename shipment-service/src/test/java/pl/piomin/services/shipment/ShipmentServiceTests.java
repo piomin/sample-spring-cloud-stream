@@ -1,7 +1,5 @@
 package pl.piomin.services.shipment;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import pl.piomin.service.common.message.*;
+import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
 
@@ -35,7 +34,7 @@ public class ShipmentServiceTests {
     private ObjectMapper mapper;
 
     @Test
-    void paymentOrder() throws JsonProcessingException {
+    void paymentOrder() {
         Shipment s = new Shipment(ShipmentType.CAR);
         Order o1 = new Order(1, OrderType.PURCHASE, LocalDateTime.now(), OrderStatus.NEW, null, s);
         input.send(MessageBuilder.withPayload(o1).build());
